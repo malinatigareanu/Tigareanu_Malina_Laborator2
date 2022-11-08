@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Tigareanu_Malina_Laborator2.Data;
 
@@ -11,9 +12,10 @@ using Tigareanu_Malina_Laborator2.Data;
 namespace Tigareanu_Malina_Laborator2.Migrations
 {
     [DbContext(typeof(Tigareanu_Malina_Laborator2Context))]
-    partial class Tigareanu_Malina_Laborator2ContextModelSnapshot : ModelSnapshot
+    [Migration("20221108161026_UpdateBookCate")]
+    partial class UpdateBookCate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
