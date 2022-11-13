@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Tigareanu_Malina_Laborator2.Data;
 
@@ -11,9 +12,10 @@ using Tigareanu_Malina_Laborator2.Data;
 namespace Tigareanu_Malina_Laborator2.Migrations
 {
     [DbContext(typeof(Tigareanu_Malina_Laborator2Context))]
-    partial class Tigareanu_Malina_Laborator2ContextModelSnapshot : ModelSnapshot
+    [Migration("20221113140848_Borrowings")]
+    partial class Borrowings
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -99,32 +101,6 @@ namespace Tigareanu_Malina_Laborator2.Migrations
                     b.ToTable("BookCategory");
                 });
 
-            modelBuilder.Entity("Tigareanu_Malina_Laborator2.Models.Borrowing", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
-
-                    b.Property<int?>("BookID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("MemberID")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("ReturnDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("BookID");
-
-                    b.HasIndex("MemberID");
-
-                    b.ToTable("Borrowing");
-                });
-
             modelBuilder.Entity("Tigareanu_Malina_Laborator2.Models.Category", b =>
                 {
                     b.Property<int>("ID")
@@ -140,35 +116,6 @@ namespace Tigareanu_Malina_Laborator2.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Category");
-                });
-
-            modelBuilder.Entity("Tigareanu_Malina_Laborator2.Models.Member", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
-
-                    b.Property<string>("Adress")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Phone")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Member");
                 });
 
             modelBuilder.Entity("Tigareanu_Malina_Laborator2.Models.Publisher", b =>
@@ -222,21 +169,6 @@ namespace Tigareanu_Malina_Laborator2.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("Tigareanu_Malina_Laborator2.Models.Borrowing", b =>
-                {
-                    b.HasOne("Tigareanu_Malina_Laborator2.Models.Book", "Book")
-                        .WithMany()
-                        .HasForeignKey("BookID");
-
-                    b.HasOne("Tigareanu_Malina_Laborator2.Models.Member", "Member")
-                        .WithMany("Borrowings")
-                        .HasForeignKey("MemberID");
-
-                    b.Navigation("Book");
-
-                    b.Navigation("Member");
-                });
-
             modelBuilder.Entity("Tigareanu_Malina_Laborator2.Models.Author", b =>
                 {
                     b.Navigation("Books");
@@ -250,11 +182,6 @@ namespace Tigareanu_Malina_Laborator2.Migrations
             modelBuilder.Entity("Tigareanu_Malina_Laborator2.Models.Category", b =>
                 {
                     b.Navigation("BookCategories");
-                });
-
-            modelBuilder.Entity("Tigareanu_Malina_Laborator2.Models.Member", b =>
-                {
-                    b.Navigation("Borrowings");
                 });
 
             modelBuilder.Entity("Tigareanu_Malina_Laborator2.Models.Publisher", b =>
